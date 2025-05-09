@@ -1,0 +1,10 @@
+numpy>=1.18.5
+opencv-python>=4.5.0
+matplotlib>=3.2.2
+pandas>=1.1.0
+seaborn>=0.11.0
+scikit-learn>=0.24.0
+torch>=1.7.0
+torchvision>=0.8.1
+tqdm>=4.50.0
+jupyter>=1.0.0
