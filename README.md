@@ -15,7 +15,6 @@ This repository contains experiments comparing convolutional neural networks (CN
 ├── icubworld1_cnn_experiment.ipynb    # CNN experiments on iCubWorld1.0 dataset
 ├── traditional_CV__Cifar_10.ipynb     # BoVW + SVM pipeline on iCubWorld1.0 and CIFAR-10
 ├── tradition_new_cifar_10.ipynb       # Enhanced CV pipeline and CIFAR-10 experiments
-├── f77463ks_Kunwei_Song_Computer_Vision_Report.pdf  # Detailed project report citeturn0file0
 └── requirements.txt            # Python dependencies
 ```
 
