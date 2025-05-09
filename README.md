@@ -60,6 +60,16 @@ Each notebook contains detailed explanations of the architecture, data preproces
 
 ## Key Results
 
+| Method                | Background | Categorization | Demonstrator | Robot |
+| --------------------- | ---------- | -------------- | ------------ | ----- |
+| BoVW+SVM (tf–idf+L2)  | 93.0       | 31.08          | 21.59        | 11.47 |
+| BoVW+SVM (Stop-Words) | 100.0      | 28.04          | 25.24        | 13.84 |
+| SimpleCNN (Flatten)   | 51.5       | 51.37          | 80.41        | 7.98  |
+| SimpleCNN (GAP)       | 53.0       | 58.02          | 88.51        | 16.46 |
+| ResNet-18             | 64.0       | 81.16          | 93.50        | 25.06 |
+
+## Key Results
+
 * **CNN (Simple vs. Improved)**
 
   * Improved SimpleCNN with global average pooling achieved up to \~58% on the Categorization subset and \~88% on Demonstrator, outperforming the original flatten-based design.
@@ -72,16 +82,6 @@ Each notebook contains detailed explanations of the architecture, data preproces
   * CIFAR-10 pipeline achieved \~29% overall accuracy with a 500-word vocabulary and SVM.
 
 For detailed tables, figures, and analysis, refer to the [project report](f77463ks_Kunwei_Song_Computer_Vision_Report.pdf).
-
-Methods	Accuracy(%)
-	Background	Categorization	Demonstrator	Robot
-BoVW+SVM(tf–idf+L2)	93.0	31.08	21.59	11.47
-BoVW+SVM(Stop-Words)	100.0	28.04	25.24	13.84
-SimpleCNN（Flatten）	51.5	51.37	80.41	7.98
-SimpleCNN（GAP）	53.0	58.02	88.51	16.46
-ResNet-18	64.0	81.16	93.50	25.06
-![image](https://github.com/user-attachments/assets/540050f6-6d77-474e-99a1-6c35ebca90c1)
-
 
 ## References
 
