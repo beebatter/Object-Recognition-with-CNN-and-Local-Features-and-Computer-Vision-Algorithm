@@ -12,9 +12,9 @@ This repository contains experiments comparing convolutional neural networks (CN
 │   └── iCubWorld1/            # iCubWorld1.0 dataset folder
 │       ├── train/             # Training images (3 instances × 200 images per category)
 │       └── test/              # Test subsets: Background, Categorization, Demonstrator, Robot
-├── icubworld1_cnn_experiment.ipynb    # CNN experiments on iCubWorld1.0 dataset
-├── traditional_CV__Cifar_10.ipynb     # BoVW + SVM pipeline on iCubWorld1.0 and CIFAR-10
-├── tradition_new_cifar_10.ipynb       # Enhanced CV pipeline and CIFAR-10 experiments
+├── iCubWorld1_CNN_Improved.ipynb    # CNN experiments on iCubWorld1.0 dataset
+├── iCubWorld_Traditional_CV_Improved.ipynb     # BoVW + SVM pipeline on iCubWorld1.0 and CIFAR-10
+├── Cifar_10_Tradition_CV.ipynb       # Enhanced CV pipeline and CIFAR-10 experiments
 └── requirements.txt            # Python dependencies
 ```
 
