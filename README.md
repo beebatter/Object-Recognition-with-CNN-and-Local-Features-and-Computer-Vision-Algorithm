@@ -12,9 +12,9 @@ This repository contains experiments comparing convolutional neural networks (CN
 │   └── iCubWorld1/            # iCubWorld1.0 dataset folder
 │       ├── train/             # Training images (3 instances × 200 images per category)
 │       └── test/              # Test subsets: Background, Categorization, Demonstrator, Robot
-├── iCubWorld1_CNN_Improved.ipynb    # CNN experiments on iCubWorld1.0 dataset
-├── iCubWorld_Traditional_CV_Improved.ipynb     # BoVW + SVM pipeline on iCubWorld1.0 and CIFAR-10
-├── Cifar_10_Tradition_CV.ipynb       # Enhanced CV pipeline and CIFAR-10 experiments
+├── iCubWorld1_CNN_Improved.ipynb          # CNN experiments on iCubWorld1.0 dataset (improved)
+├── iCubWorld_Traditional_CV_Improved.ipynb # BoVW + SVM pipeline on iCubWorld1.0 dataset (improved)
+├── Cifar_10_Tradition_CV.ipynb            # Traditional CV pipeline experiments on CIFAR-10
 └── requirements.txt            # Python dependencies
 ```
 
@@ -72,6 +72,16 @@ Each notebook contains detailed explanations of the architecture, data preproces
   * CIFAR-10 pipeline achieved \~29% overall accuracy with a 500-word vocabulary and SVM.
 
 For detailed tables, figures, and analysis, refer to the [project report](f77463ks_Kunwei_Song_Computer_Vision_Report.pdf).
+
+Methods	Accuracy(%)
+	Background	Categorization	Demonstrator	Robot
+BoVW+SVM(tf–idf+L2)	93.0	31.08	21.59	11.47
+BoVW+SVM(Stop-Words)	100.0	28.04	25.24	13.84
+SimpleCNN（Flatten）	51.5	51.37	80.41	7.98
+SimpleCNN（GAP）	53.0	58.02	88.51	16.46
+ResNet-18	64.0	81.16	93.50	25.06
+![image](https://github.com/user-attachments/assets/540050f6-6d77-474e-99a1-6c35ebca90c1)
+
 
 ## References
 
