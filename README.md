@@ -1,30 +1,46 @@
-# Object Recognition with CNN and Local Features
+# **Object Recognition Project (Computer Vision Assignment)**
 
 **Author**: Kunwei Song
 **Student ID**: 11537231
 
-This repository contains experiments comparing convolutional neural networks (CNNs) and traditional computer-vision (CV) pipelines on the iCubWorld1.0 and CIFAR-10 datasets. It supports end-to-end training and evaluation of lightweight CNN architectures as well as a Bag-of-Visual-Words (BoVW) approach using SIFT features and SVM classifiers.
+## **1. Project Overview**
 
-## Repository Structure
+This project investigates **object recognition** by comparing **lightweight convolutional neural networks (CNNs)** with a **traditional computer-vision pipeline** based on Bag-of-Visual-Words and SVM. Experiments are conducted on the **iCubWorld1.0** and **CIFAR-10** datasets to evaluate end-to-end learning versus handcrafted feature approaches.
 
-```bash
-├── Dataset/
-│   └── iCubWorld1/            # iCubWorld1.0 dataset folder
-│       ├── train/             # Training images (3 instances × 200 images per category)
-│       └── test/              # Test subsets: Background, Categorization, Demonstrator, Robot
-├── iCubWorld1_CNN_Improved.ipynb          # CNN experiments on iCubWorld1.0 dataset (improved)
-├── iCubWorld_Traditional_CV_Improved.ipynb # BoVW + SVM pipeline on iCubWorld1.0 dataset (improved)
-├── Cifar_10_Tradition_CV.ipynb            # Traditional CV pipeline experiments on CIFAR-10
-└── requirements.txt            # Python dependencies
-```
+## **2. Dataset**
 
-## Dependencies
+We use two publicly available datasets:
 
-The code was developed and tested with Python 3.8+. Install the required packages:
+* **iCubWorld1.0**: A robotics vision dataset with images of 10 object categories captured under various conditions.
 
-```bash
-pip install -r requirements.txt
-```
+  * **Training Samples**: 600 images (3 object instances × 200 images)
+  * **Test Subsets**: 4 partitions (Background, Categorization, Demonstrator, Robot)
+* **CIFAR-10**: A standard benchmark for image classification containing 60,000 32×32 color images in 10 classes.
+
+  * **Training Samples**: 50,000
+  * **Test Samples**: 10,000
+
+These datasets provide complementary challenges: iCubWorld1.0 tests robustness to background and viewpoint changes, while CIFAR-10 measures performance on small-scale natural images.
+
+## **3. Methods Implemented**
+
+We implement and evaluate two main object-recognition pipelines:
+
+### **Method 1: Bag-of-Visual-Words + SVM**
+
+* **Feature Extraction**: SIFT descriptors on densely sampled keypoints.
+* **Vocabulary Construction**: K-means clustering to form a 500-word codebook.
+* **Encoding**: TF–IDF weighting with L2 normalization and stop-word removal variants.
+* **Classification**: Linear SVM on histogram representations.
+
+### **Method 2: Convolutional Neural Networks (CNNs)**
+
+* **SimpleCNN (Flatten)**: A small CNN with fully connected layers after convolution.
+* **SimpleCNN (GAP)**: Same architecture but replaces flatten with Global Average Pooling.
+* **ResNet‑18**: A pre‑activated residual network fine‑tuned on each dataset.
+
+## **4. Installation and Dependencies**
+
 
 Typical dependencies include:
 
@@ -37,57 +53,84 @@ Typical dependencies include:
 * torchvision
 * jupyter
 
-## Usage
 
-### 1. Prepare the Dataset
-
-1. Download and extract the iCubWorld1.0 dataset into `Dataset/iCubWorld1/`, preserving the `train/` and `test/` subdirectories.
-2. CIFAR-10 is fetched automatically via `fetch_openml` in the notebooks, so no manual download is needed.
-
-### 2. Launch Jupyter Notebooks
+Clone this repository and install required packages:
 
 ```bash
-jupyter notebook
+git clone <your-repo-url>  
+cd <repo-directory>  
+pip install -r requirements.txt  
 ```
 
-Open and run the notebooks in the following order:
+### **Notebooks**
 
-1. **icubworld1\_cnn\_experiment.ipynb**: trains and evaluates a custom CNN and an improved global-pooling CNN on the iCubWorld1.0 dataset.
-2. **traditional\_CV\_\_Cifar\_10.ipynb**: implements a SIFT + BoVW + SVM pipeline on both iCubWorld1.0 and CIFAR-10.
-3. **tradition\_new\_cifar\_10.ipynb**: explores enhancements to the CV pipeline and further CIFAR-10 experiments.
+| Notebook                                  | Description                                                            |
+| ----------------------------------------- | ---------------------------------------------------------------------- |
+| `iCubWorld1_CNN_Improved.ipynb`           | Trains and evaluates SimpleCNN and ResNet‑18 on iCubWorld1.0.          |
+| `iCubWorld_Traditional_CV_Improved.ipynb` | Implements BoVW + SVM pipeline on iCubWorld1.0 with improved settings. |
+| `Cifar_10_Tradition_CV.ipynb`             | Applies BoVW + SVM on CIFAR-10 and compares with CNN results.          |
 
-Each notebook contains detailed explanations of the architecture, data preprocessing, hyperparameter tuning, and performance metrics.
+### **Requirements**
 
-## Key Results
+```text
+numpy>=1.18.5  
+opencv-python>=4.5.0  
+matplotlib>=3.2.2  
+scikit-learn>=0.24.0  
+torch>=1.7.0  
+torchvision>=0.8.1  
+tqdm>=4.50.0  
+jupyter>=1.0.0  
+```
 
-| Method                | Background | Categorization | Demonstrator | Robot |
-| --------------------- | ---------- | -------------- | ------------ | ----- |
-| BoVW+SVM (tf–idf+L2)  | 93.0       | 31.08          | 21.59        | 11.47 |
-| BoVW+SVM (Stop-Words) | 100.0      | 28.04          | 25.24        | 13.84 |
-| SimpleCNN (Flatten)   | 51.5       | 51.37          | 80.41        | 7.98  |
-| SimpleCNN (GAP)       | 53.0       | 58.02          | 88.51        | 16.46 |
-| ResNet-18             | 64.0       | 81.16          | 93.50        | 25.06 |
+## **5. Running the Code**
 
-## Key Results
+1. Ensure **iCubWorld1.0** data is in `Dataset/iCubWorld1/train` and `Dataset/iCubWorld1/test`.
+2. Launch Jupyter Lab or Notebook:
 
-* **CNN (Simple vs. Improved)**
+```bash
 
-  * Improved SimpleCNN with global average pooling achieved up to \~58% on the Categorization subset and \~88% on Demonstrator, outperforming the original flatten-based design.
-  * Validation accuracy on iCubWorld1.0 reached \~98.8% with optimized hyperparameters.
+jupyter notebook
 
-* **Traditional CV (BoVW + SVM)**
+```
+3. Open and run notebooks in order:  
+   - `iCubWorld1_CNN_Improved.ipynb`  
+   - `iCubWorld_Traditional_CV_Improved.ipynb`  
+   - `Cifar_10_Tradition_CV.ipynb`  
+4. Each notebook handles preprocessing, training, evaluation, and visualization of results.
 
-  * Background subset accuracy: \~93–100% (background bias detected).
-  * Demonstrator/Categorization/Robot subsets: 11–31% accuracy, highlighting limitations in generalization and spatial information.
-  * CIFAR-10 pipeline achieved \~29% overall accuracy with a 500-word vocabulary and SVM.
+## **6. Evaluation**  
+The following table summarizes classification accuracy (%) on the iCubWorld1.0 test subsets:  
 
-For detailed tables, figures, and analysis, refer to the [project report](f77463ks_Kunwei_Song_Computer_Vision_Report.pdf).
+| Method                       | Background | Categorization | Demonstrator | Robot  |  
+|------------------------------|------------|----------------|--------------|--------|  
+| BoVW+SVM (tf–idf+L2)         | 93.0       | 31.08          | 21.59        | 11.47  |  
+| BoVW+SVM (Stop-Words)        | 100.0      | 28.04          | 25.24        | 13.84  |  
+| SimpleCNN (Flatten)          | 51.5       | 51.37          | 80.41        | 7.98   |  
+| SimpleCNN (GAP)              | 53.0       | 58.02          | 88.51        | 16.46  |  
+| ResNet-18                    | 64.0       | 81.16          | 93.50        | 25.06  |  
 
-## References
+Accuracy on CIFAR-10 is also reported in the notebooks for direct comparison.
 
-* LeCun et al., 1998. Gradient-based learning applied to document recognition.
-* Krizhevsky et al., 2012. ImageNet classification with deep convolutional neural networks.
-* Fanello et al., 2013. iCub World: Friendly Robots Help Building Good Vision Data-Sets.
-* Lin et al., 2013. Network In Network.
+## **7. Results and Discussion**  
+- **CNNs outperform** traditional CV pipelines on challenging subsets (Categorization, Demonstrator) due to learned spatial features.  
+- **BoVW+SVM** excels on Background bias but suffers on generalization (Robot subset).  
+- **Global Average Pooling** improves SimpleCNN stability and performance over flatten-based architecture.  
+- **ResNet‑18** achieves closest performance to human baselines, demonstrating the benefit of residual learning.
 
-(See `report.pdf` for the full reference list.)
+## **8. Use of Generative AI Tools**  
+- **ChatGPT** was used for code troubleshooting, documentation drafting, and conceptual discussion.  
+- All AI-suggested code was manually reviewed and validated before inclusion.
+
+## **9. Author**  
+- **Kunwei Song** (Student ID: 11537231)
+
+## **10. References**  
+- Fanello et al., *iCubWorld: Friendly Robots Help Building Good Vision Data-Sets*, IROS 2013.  
+- Krizhevsky et al., *ImageNet Classification with Deep Convolutional Neural Networks*, NIPS 2012.  
+- Lin et al., *Network In Network*, ICLR 2014.  
+- LeCun et al., *Gradient-based Learning Applied to Document Recognition*, IEEE 1998.  
+- CIFAR-10 Dataset: [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)  
+- iCubWorld1.0 Dataset: [http://robots.epfl.ch/icubworld1](http://robots.epfl.ch/icubworld1)
+
+```
