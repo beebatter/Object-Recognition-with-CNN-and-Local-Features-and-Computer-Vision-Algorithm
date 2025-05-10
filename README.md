@@ -1,6 +1,7 @@
 # **Object Recognition Project (Computer Vision Assignment)**
 
 **Author**: Kunwei Song
+
 **Student ID**: 11537231
 
 ## **1. Project Overview**
