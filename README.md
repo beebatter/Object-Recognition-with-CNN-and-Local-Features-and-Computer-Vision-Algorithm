@@ -1,4 +1,5 @@
-# **Object Recognition Project (Computer Vision Assignment)**
+# **Object Recognition Project (COMP61342/41342: Cognitive Robotics and Computer Vision
+Assignment)**
 
 **Author**: Kunwei Song
 
